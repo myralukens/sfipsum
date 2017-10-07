@@ -1,0 +1,107 @@
+.mainContentItems{
+    display: flex;
+    flex-grow: 100;
+}
+
+.leftBar{
+    width: 33vw;
+
+    background: #F7F7F7;
+}
+
+.leftBarItem{
+    height: 64px;
+    font-family: sans-serif;
+    display: flex;
+    padding-left: 32px;
+    color: #E03441;
+    align-items: center;
+}
+
+.buttonContainer{
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 16px;
+    display: flex;
+    flex-grow: 1;
+}
+
+.button{
+    width: 24px;
+    height: 24px;
+    border: #E03441 2px solid;
+    border-radius: 100%;
+    margin: 4px;
+    transform: scale(0.8);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.button:hover{
+    transform: scale(1);
+    background-color: #FF8585;
+    transition: 0.2s;
+}
+
+.button:active{
+    transform: scale(1.1);
+    transition: 0.1s;
+}
+
+.toggle{
+    width: 48px;
+    height: 24px;
+    border: #E03441 2px solid;
+    border-radius: 24px;
+    margin: 4px;
+    transform: scale(0.8);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.toggle:hover{
+    transform: scale(1);
+    transition: 0.2s;
+}
+
+.toggle.active{
+    background-color: #E03441;
+    transition: 0.2s;
+}
+
+.toggle.active .toggleBubble{
+    transform: translateX(24px);
+    transition: 0.2s;
+    background-color: white;
+}
+
+.toggleBubble{
+    width: 16px;
+    transform: translateX(0px);
+    height: 16px;
+    content: " ";
+    margin: 4px;
+    background-color: #E03441;
+    border-radius: 16px;
+    transition: 0.2s;
+}
+
+.generateButton{
+    line-height: 42px;
+    vertical-align: middle;
+    text-align: center;
+    color: #E03441;
+    font-family: sans-serif;
+    padding: 0 22px;
+    border: #E03441 2px solid;
+    border-radius: 8px;
+    margin: 32px 64px 16px 64px;
+    transition: 0.2s all;
+    cursor: pointer;
+}
+
+.generateButton:hover{
+    background-color: #E03441;
+    color: white;
+    transition: 0.2s all;
+}

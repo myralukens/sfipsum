@@ -1,0 +1,18 @@
+nav{
+    width: 100vw;
+    height: 64px;
+    flex-shrink: 0;
+    background-color: #E03441;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav img{
+    animation: navLogoAnimation 2s;
+}
+
+@keyframes navLogoAnimation {
+    0% {transform: scale(0.8); opacity: 0;}
+    100% {transform: scale(1.0); opacity: 1;}
+}

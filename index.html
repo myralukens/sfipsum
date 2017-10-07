@@ -1,1 +1,112 @@
-echo "Hello, World!"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+
+     <title>SF Ipsum</title>
+     <meta name="description" content="Experience the Bay's Finest Placeholder Text Generation Algorithm.">
+     <meta name="title" content="SF Ipsum<">
+     <meta name="author" content="MyMy and J">
+
+     <link rel="stylesheet" type="text/css" href="./clearfix.css">
+     <link rel="stylesheet" type="text/css" href="./nav.css">
+     <link rel="stylesheet" type="text/css" href="./leftBar.css">
+     <link rel="stylesheet" type="text/css" href="./rightAreaContent.css">
+</head>
+<body onload="generator()">
+    <nav>
+        <img src="./images/bridge.svg" width="64px" height="64px">
+    </nav>
+    <div class="mainContentItems">
+        <div class="leftBar">
+            <div class="leftBarItem">
+                <div id ="numParagraphs">2</div>
+                &nbsp;Paragraphs
+                <div class="buttonContainer">
+                    <div class="button" onClick="increment()"><img src="./images/plus.svg"></div>
+                    <div class="button" onClick="decrement()"><img src="./images/minus.svg"></div>
+                </div>
+            </div>
+            <div class="leftBarItem">
+                Explicit Mode Enabled
+                <div class="buttonContainer">
+                    <div class="toggle" id="myToggle" onclick="toggleClass(this);">
+                        <div class="toggleBubble"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="generateButton" onclick="generator()">
+                Generate
+            </div>
+        </div>
+        <div class="RightAreaContent">
+            <div class="copyButton" onclick="copy()">
+                Copy to Clipboard
+            </div>
+            <div id="paragraphs">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://requirejs.org/docs/release/2.2.0/minified/require.js"></script>
+<script type = "text/javascript">
+    var x = 2;
+
+    function increment(){
+        console.log("increment");
+        document.getElementById('numParagraphs').innerHTML = ++x;
+    }
+
+    function decrement(){
+        if (x != 1) {
+            document.getElementById('numParagraphs').innerHTML = --x;
+        }
+    }
+
+    function generator(){
+        // generate
+        var paragraphs = document.getElementById('numParagraphs').innerHTML;
+        var explicit = false;
+
+        if ($("#myToggle").hasClass("active")) {
+            console.log("active");
+            explicit = true;
+        }
+
+        // remove all the old paragraphs
+        var node = document.getElementById("paragraphs");
+        while (node.hasChildNodes()) {
+            node.removeChild(node.lastChild);
+        }
+
+        var result = generateSentence(explicit);
+
+        for (a = 0; a < paragraphs; a++) {
+            // 4 - 6 sentences per paragraph
+            var numSentences = Math.floor(Math.random() * 3) + 4;
+            for (b = 1; b < numSentences; b++) {
+                result += (" " + generateSentence(explicit));
+            }
+
+            var newParagraph = document.createElement('p');
+            newParagraph.textContent = result;
+            document.getElementById("paragraphs").appendChild(newParagraph);
+
+            result = "";
+        }
+
+        console.log(result);
+    }
+
+    function toggleClass(elem) {
+        $(elem).toggleClass('active');
+    };
+
+    function copy() {
+
+    }
+</script>
+<script src="generate.js"></script>

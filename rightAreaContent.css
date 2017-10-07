@@ -1,0 +1,31 @@
+.RightAreaContent{
+    flex: 2;
+    flex-shrink: 0;
+    overflow-y: scroll;
+}
+.copyButton{
+    line-height: 42px;
+    vertical-align: middle;
+    text-align: center;
+    color: #E03441;
+    font-family: sans-serif;
+    padding: 0 22px;
+    border: #E03441 2px solid;
+    border-radius: 8px;
+    margin: 32px 64px 16px 64px;
+    transition: 0.2s all;
+    cursor: pointer;
+}
+
+.copyButton:hover{
+    background-color: #E03441;
+    color: white;
+    transition: 0.2s all;
+}
+
+.RightAreaContent p{
+    color: #B2B2B2;
+    line-height: 16pt;
+    font-family: sans-serif;
+    padding: 16px 64px 0px 64px;
+}
