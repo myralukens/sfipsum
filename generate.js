@@ -3,14 +3,14 @@ const grated_words_file = "grated.txt"
 const end_punctuation_file = "endpunctuation.txt"
 const middle_punctuation_file = "middlepunctuation.txt"
 
-var result = generate(1, false);
+var result = generate(5, true);
 console.log(result);
 
 function generate(paragraphs, explicit) {
-   var result = "";
+   var result = generateSentence(explicit);
 
-   for (i = 0; i < paragraphs; i++) {
-      result += generateSentence(explicit);
+   for (a = 1; a < paragraphs; a++) {
+      result += (" " + generateSentence(explicit));
    }
 
    return result;
@@ -24,7 +24,7 @@ function generateSentence(explicit) {
    var firstWord = generateWord(explicit);
    var sentence = (firstWord.charAt(0).toUpperCase() + firstWord.slice(1));
 
-   for (i = 0; i < numWords; i++) {
+   for (b = 0; b < numWords; b++) {
       sentence += (" " + generateWord(explicit));
 
       // include mid-sentence punctuation 10% of the time
@@ -45,23 +45,23 @@ function generateWord(explicit) {
    var filename = grated_words_file;
 
    // explicit word
-   if (odds < 3) {
+   if (explicit && odds < 3) {
       filename = explicit_words_file;
    } 
 
-   var fs = require('fs');
-   var array = fs.readFileSync(filename).toString().split("\n");
-   return array[Math.floor(Math.random()*array.length)];
+   return getRandomWordFromFile(filename);
 }
 
 function generateMiddleSentencePunctuation() {
-   var fs = require('fs');
-   var array = fs.readFileSync(middle_punctuation_file).toString().split("\n");
-   return array[Math.floor(Math.random()*array.length)];
+   return getRandomWordFromFile(middle_punctuation_file);
 }
 
 function generateEndPunctuation() {
+   return getRandomWordFromFile(end_punctuation_file);
+}
+
+function getRandomWordFromFile(filename) {
    var fs = require('fs');
-   var array = fs.readFileSync(end_punctuation_file).toString().split("\n");
+   var array = fs.readFileSync(filename).toString().split("\n");
    return array[Math.floor(Math.random()*array.length)];
 }
