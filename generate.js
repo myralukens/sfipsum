@@ -3,14 +3,22 @@ const grated_words_file = "grated.txt"
 const end_punctuation_file = "endpunctuation.txt"
 const middle_punctuation_file = "middlepunctuation.txt"
 
-var result = generate(5, true);
+var result = generate(2, true);
 console.log(result);
 
 function generate(paragraphs, explicit) {
    var result = generateSentence(explicit);
 
-   for (a = 1; a < paragraphs; a++) {
-      result += (" " + generateSentence(explicit));
+   for (a = 0; a < paragraphs; a++) {
+      // 4 - 6 sentences per paragraph
+      var numSentences = Math.floor(Math.random() * 3) + 4;
+      console.log(numSentences);
+      for (b = 1; b < numSentences; b++) {
+         result += (" " + generateSentence(explicit));
+      }
+      if (a < (paragraphs - 1)) {
+         result += "\n\n";
+      }
    }
 
    return result;
@@ -18,13 +26,13 @@ function generate(paragraphs, explicit) {
 
 // sentence is between 5 - 10 words
 function generateSentence(explicit) {
-   // randly generate # of words (5 - 10)
-   var numWords = Math.floor(Math.random() * 5) + 5;
+   // randly generate # of words
+   var numWords = Math.floor(Math.random() * 4) + 5;
    // capitalize the first word
    var firstWord = generateWord(explicit);
    var sentence = (firstWord.charAt(0).toUpperCase() + firstWord.slice(1));
 
-   for (b = 0; b < numWords; b++) {
+   for (c = 0; c < numWords; c++) {
       sentence += (" " + generateWord(explicit));
 
       // include mid-sentence punctuation 10% of the time
