@@ -54,6 +54,7 @@
 <script src="http://requirejs.org/docs/release/2.2.0/minified/require.js"></script>
 <script type = "text/javascript">
     var x = 2;
+    var copyableResult = "";
 
     function increment(){
         console.log("increment");
@@ -83,17 +84,21 @@
         }
 
         var result = generateSentence(explicit);
+        copyableResult = result;
 
         for (a = 0; a < paragraphs; a++) {
             // 4 - 6 sentences per paragraph
             var numSentences = Math.floor(Math.random() * 3) + 4;
             for (b = 1; b < numSentences; b++) {
-                result += (" " + generateSentence(explicit));
+                var newGen = (" " + generateSentence(explicit));
+                result += newGen;
+                copyableResult += newGen;
             }
 
             var newParagraph = document.createElement('p');
             newParagraph.textContent = result;
             document.getElementById("paragraphs").appendChild(newParagraph);
+            copyableResult += "\n\n";
 
             result = "";
         }
@@ -106,7 +111,43 @@
     };
 
     function copy() {
+        var textArea = document.createElement("textarea");
+        // Place in top-left corner of screen regardless of scroll position.
+        textArea.style.position = 'fixed';
+        textArea.style.top = 0;
+        textArea.style.left = 0;
 
+        // Ensure it has a small width and height. Setting to 1px / 1em
+        // doesn't work as this gives a negative w/h on some browsers.
+        textArea.style.width = '2em';
+        textArea.style.height = '2em';
+
+        // We don't need padding, reducing the size if it does flash render.
+        textArea.style.padding = 0;
+
+        // Clean up any borders.
+        textArea.style.border = 'none';
+        textArea.style.outline = 'none';
+        textArea.style.boxShadow = 'none';
+
+        // Avoid flash of white box if rendered for any reason.
+        textArea.style.background = 'transparent';
+
+        textArea.value = copyableResult;
+
+        document.body.appendChild(textArea);
+
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying text command was ' + msg);
+        } catch (err) {
+            console.log('Oops, unable to copy');
+        }
+
+        document.body.removeChild(textArea);
     }
 </script>
 <script src="generate.js"></script>
