@@ -10,7 +10,7 @@ function generateSentence(explicit) {
       sentence += (" " + generateWord(explicit));
 
       // include mid-sentence punctuation 10% of the time
-      if (Math.floor(Math.random() * 10) == 1) {
+      if (c < (numWords - 1) && Math.floor(Math.random() * 10) == 1) {
          sentence += generateMiddleSentencePunctuation();
       }
    }
