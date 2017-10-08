@@ -5,7 +5,6 @@
 
 .leftBar{
     width: 33vw;
-
     background: #F7F7F7;
 }
 
@@ -37,17 +36,6 @@
     cursor: pointer;
 }
 
-.button:hover{
-    transform: scale(1);
-    background-color: #FF8585;
-    transition: 0.2s;
-}
-
-.button:active{
-    transform: scale(1.1);
-    transition: 0.1s;
-}
-
 .toggle{
     width: 48px;
     height: 24px;
@@ -57,11 +45,6 @@
     transform: scale(0.8);
     transition: 0.2s;
     cursor: pointer;
-}
-
-.toggle:hover{
-    transform: scale(1);
-    transition: 0.2s;
 }
 
 .toggle.active{
@@ -98,10 +81,18 @@
     margin: 32px 64px 16px 64px;
     transition: 0.2s all;
     cursor: pointer;
+    align-self: flex-end;
 }
 
-.generateButton:hover{
-    background-color: #E03441;
-    color: white;
-    transition: 0.2s all;
+
+@media only screen and (max-width: 812px) {
+    .mainContentItems{
+        display: block;
+        flex-grow: 0;
+    }
+
+    .leftBar{
+        width: 100vw;
+        padding-bottom: 16px;
+    }
 }

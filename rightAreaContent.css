@@ -17,15 +17,15 @@
     cursor: pointer;
 }
 
-.copyButton:hover{
-    background-color: #E03441;
-    color: white;
-    transition: 0.2s all;
-}
-
 .RightAreaContent p{
     color: #B2B2B2;
     line-height: 16pt;
     font-family: sans-serif;
     padding: 16px 64px 0px 64px;
+}
+
+@media only screen and (max-width: 812px) {
+    .RightAreaContent{
+        padding-bottom: 32px;
+    }
 }
